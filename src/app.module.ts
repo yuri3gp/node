@@ -6,12 +6,12 @@ import { User } from './users/entities/user.entity';
 
 @Module({
   imports: [UsersModule, TypeOrmModule.forRoot({
-    type: 'mysql',
+    type: 'postgres',
     host: 'localhost',
-    port: 3306,
+    port: 5432,
     username: 'root',
     password: 'root',
-    database: 'adrian',
+    database: 'banco',
     entities: [User],
     synchronize: true,
     autoLoadEntities: false
