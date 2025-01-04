@@ -19,7 +19,7 @@ export class UsersService {
     return this.usersRepository.findOneBy({ id });
   }
 
-  async create(user: User): Promise<User> {
+  async create(user: Omit<User, "id">): Promise<User> {
     const newUser = this.usersRepository.create(user);
     return this.usersRepository.save(newUser);
   }
