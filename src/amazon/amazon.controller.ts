@@ -9,4 +9,13 @@ export class AmazonController {
   create(@Body() createAmazonDto: any) {
     return this.amazonService.create(createAmazonDto);
   }
+  @Get()
+  findAll() {
+    return this.amazonService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.amazonService.findOne(+id);
+  }
 }

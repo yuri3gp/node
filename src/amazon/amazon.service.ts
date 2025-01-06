@@ -8,10 +8,21 @@ export class AmazonService {
   constructor(
     @InjectRepository(Amazon)
     private amazonRepository: Repository<Amazon>,
-    private dataSource: DataSource
+    private dataSource: DataSource,
   ) { }
-  async create(amazon: Omit<any, "id">): Promise<Amazon> {
-    const newUser = this.amazonRepository.create(amazon);
-    return this.amazonRepository.save(newUser);
+
+  async create(amazon: Record<string, any>): Promise<Amazon> {
+    const newHandler = this.amazonRepository.create({
+      metadata: amazon as any,
+    });
+    return this.amazonRepository.save(newHandler);
+  }
+
+  async findAll(): Promise<Amazon[]> {
+    return this.amazonRepository.find();
+  }
+
+  async findOne(id: number): Promise<Amazon | null> {
+    return this.amazonRepository.findOneBy({ id });
   }
 }
