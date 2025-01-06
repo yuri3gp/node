@@ -13,7 +13,7 @@ export class AmazonService {
 
   async create(amazon: Record<string, any>): Promise<Amazon> {
     const newHandler = this.amazonRepository.create({
-      metadata: amazon as any,
+      metadata: { ...amazon } as any,
     });
     return this.amazonRepository.save(newHandler);
   }

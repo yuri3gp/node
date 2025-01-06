@@ -5,6 +5,7 @@ import { DataSource } from 'typeorm';
 import { User } from './users/entities/user.entity';
 import { ConfigModule } from '@nestjs/config';
 import { AmazonModule } from './amazon/amazon.module';
+import { Amazon } from './amazon/entities/amazon.entity';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { AmazonModule } from './amazon/amazon.module';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [User],
+      entities: [User,Amazon],
       synchronize: true,
       autoLoadEntities: false,
     }),
