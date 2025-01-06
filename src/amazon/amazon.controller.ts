@@ -1,15 +1,19 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { AmazonService } from './amazon.service';
 
 @Controller('sns')
 export class AmazonController {
   constructor(private readonly amazonService: AmazonService) { }
 
-  @Post()
-  create(@Body() createAmazonDto: any) {
-    return this.amazonService.create(createAmazonDto);
-  }
   @Get()
+  create(
+    @Query() queryParams: any,
+    @Param() routeParams: any
+  ) {
+    const combinedParams = { ...queryParams, ...routeParams };
+    return this.amazonService.create(combinedParams);
+  }
+  @Get("/all")
   findAll() {
     return this.amazonService.findAll();
   }
