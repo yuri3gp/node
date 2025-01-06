@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { User } from './users/entities/user.entity';
 import { ConfigModule } from '@nestjs/config';
+import { AmazonModule } from './amazon/amazon.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ConfigModule } from '@nestjs/config';
       synchronize: true,
       autoLoadEntities: false,
     }),
+    AmazonModule,
   ],
   controllers: [],
   providers: [],
